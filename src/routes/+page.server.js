@@ -1,5 +1,6 @@
 export async function load({ url }) {
     let par = url.searchParams.get('page')
+    if (!par || par < 0) par = 0;
     const baseUrl = `https://api.schiphol.nl/public-flights/flights?page=${par}`;
     const response = await api('get', baseUrl)
     return { vluchten: response.json(), pagina: par }
